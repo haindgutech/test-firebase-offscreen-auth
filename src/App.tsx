@@ -13,16 +13,16 @@ function App() {
     globalThis.parent.self.postMessage(JSON.stringify(result), PARENT_FRAME);
   }
 
-  globalThis.addEventListener("message", function ({ data }) {
-    if (data.initAuth) {
-      // Opens the Google sign-in page in a popup, inside of an iframe in the
-      // extension's offscreen document.
-      // To centralize logic, all responses are forwarded to the parent frame,
-      // which goes on to forward them to the extension's service worker.
-      signInWithPopup(auth, googleProvider)
-        .then(sendResponse)
-        .catch(sendResponse);
-    }
+  globalThis.addEventListener("message", function () {
+    // if (data.initAuth) {
+    // Opens the Google sign-in page in a popup, inside of an iframe in the
+    // extension's offscreen document.
+    // To centralize logic, all responses are forwarded to the parent frame,
+    // which goes on to forward them to the extension's service worker.
+    signInWithPopup(auth, googleProvider)
+      .then(sendResponse)
+      .catch(sendResponse);
+    // }
   });
   return (
     <div>
